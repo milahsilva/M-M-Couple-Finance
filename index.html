@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Couple Finance</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="app">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="logo">
+          <div class="logo-heart">♡</div>
+
+          <div>
+            <h2>Couple Finance</h2>
+            <p>Money together</p>
+          </div>
+        </div>
+
+        <nav>
+          <button class="nav-item active" onclick="showPage('dashboard', this)">
+            🏠 Dashboard
+          </button>
+
+          <button class="nav-item" onclick="showPage('income', this)">
+            💰 Income
+          </button>
+
+          <button class="nav-item" onclick="showPage('expenses', this)">
+            💸 Expenses
+          </button>
+
+          <button class="nav-item" onclick="showPage('savings', this)">
+            💎 Savings
+          </button>
+
+          <button class="nav-item" onclick="showPage('goals', this)">
+            🎯 Goals
+          </button>
+
+          <button class="nav-item" onclick="showPage('year', this)">
+            📊 Year Overview
+          </button>
+        </nav>
+
+        <div class="sidebar-bottom">Made for two ❤️</div>
+      </aside>
+
+      <!-- MAIN -->
+      <main class="main">
+        <!-- ================= DASHBOARD ================= -->
+
+        <section id="dashboard" class="page active-page">
+          <div class="topbar">
+            <div>
+              <p class="small-text">Your financial overview</p>
+
+              <h1>Good evening, Mila & Mathias ❤️</h1>
+            </div>
+
+            <div class="month-selector">
+              <label>Month</label>
+
+              <select
+                id="dashboardMonth"
+                onchange="changeMonth(this.value)"
+              ></select>
+            </div>
+          </div>
+
+          <!-- MAIN CARDS -->
+
+          <div class="main-cards">
+            <div class="main-card" onclick="showPage('income')">
+              <div class="card-icon">💰</div>
+
+              <div>
+                <p>Income</p>
+
+                <h2 id="dashboardIncome">0 kr</h2>
+
+                <span>View income →</span>
+              </div>
+            </div>
+
+            <div class="main-card" onclick="showPage('expenses')">
+              <div class="card-icon">💸</div>
+
+              <div>
+                <p>Expenses</p>
+
+                <h2 id="dashboardExpenses">0 kr</h2>
+
+                <span>View expenses →</span>
+              </div>
+            </div>
+
+            <div class="main-card" onclick="showPage('savings')">
+              <div class="card-icon">💎</div>
+
+              <div>
+                <p>Savings</p>
+
+                <h2 id="dashboardSavings">0 kr</h2>
+
+                <span>View savings →</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- BALANCE -->
+
+          <div class="section-box">
+            <div class="section-title">
+              <div>
+                <p class="small-text">Fairness overview</p>
+
+                <h2>⚖️ Financial Balance</h2>
+              </div>
+            </div>
+
+            <div class="balance-grid">
+              <!-- MILA -->
+
+              <div class="person-balance">
+                <div class="person-header">
+                  <div class="avatar mila">M</div>
+
+                  <div>
+                    <h3>Mila</h3>
+                    <p>Contribution</p>
+                  </div>
+                </div>
+
+                <div class="balance-row">
+                  <span>Income</span>
+                  <strong id="milaIncomePercent">0%</strong>
+                </div>
+
+                <div class="progress">
+                  <div id="milaIncomeBar" class="progress-fill"></div>
+                </div>
+
+                <div class="balance-row">
+                  <span>Expenses</span>
+                  <strong id="milaExpensePercent">0%</strong>
+                </div>
+
+                <div class="progress">
+                  <div id="milaExpenseBar" class="progress-fill"></div>
+                </div>
+
+                <div class="balance-row">
+                  <span>Savings</span>
+                  <strong id="milaSavingsPercent">0%</strong>
+                </div>
+
+                <div class="progress">
+                  <div id="milaSavingsBar" class="progress-fill"></div>
+                </div>
+              </div>
+
+              <!-- MATHIAS -->
+
+              <div class="person-balance">
+                <div class="person-header">
+                  <div class="avatar mathias">M</div>
+
+                  <div>
+                    <h3>Mathias</h3>
+                    <p>Contribution</p>
+                  </div>
+                </div>
+
+                <div class="balance-row">
+                  <span>Income</span>
+                  <strong id="mathiasIncomePercent">0%</strong>
+                </div>
+
+                <div class="progress">
+                  <div id="mathiasIncomeBar" class="progress-fill"></div>
+                </div>
+
+                <div class="balance-row">
+                  <span>Expenses</span>
+                  <strong id="mathiasExpensePercent">0%</strong>
+                </div>
+
+                <div class="progress">
+                  <div id="mathiasExpenseBar" class="progress-fill"></div>
+                </div>
+
+                <div class="balance-row">
+                  <span>Savings</span>
+                  <strong id="mathiasSavingsPercent">0%</strong>
+                </div>
+
+                <div class="progress">
+                  <div id="mathiasSavingsBar" class="progress-fill"></div>
+                </div>
+              </div>
+            </div>
+
+            <div id="balanceMessage" class="balance-message">
+              Everything looks balanced ❤️
+            </div>
+          </div>
+
+          <!-- GOALS -->
+
+          <div class="section-box">
+            <div class="section-title">
+              <div>
+                <p class="small-text">What you're saving for</p>
+
+                <h2>🎯 Goals</h2>
+              </div>
+
+              <button class="text-button" onclick="showPage('goals')">
+                View all →
+              </button>
+            </div>
+
+            <div id="dashboardGoals" class="goals-grid"></div>
+          </div>
+        </section>
+
+        <!-- ================= INCOME ================= -->
+
+        <section id="income" class="page">
+          <div class="page-header">
+            <div>
+              <button class="back-button" onclick="showPage('dashboard')">
+                ← Dashboard
+              </button>
+
+              <p class="small-text">Money coming in</p>
+
+              <h1>💰 Income</h1>
+            </div>
+
+            <div class="month-selector">
+              <label>Month</label>
+
+              <select
+                id="incomeMonth"
+                onchange="changeMonth(this.value)"
+              ></select>
+            </div>
+          </div>
+
+          <div class="summary-card">
+            <p>Total Income</p>
+
+            <h2 id="incomeTotal">0 kr</h2>
+          </div>
+
+          <div class="people-grid">
+            <div class="person-card">
+              <div class="person-header">
+                <div class="avatar mila">M</div>
+
+                <div>
+                  <h3>Mila</h3>
+                  <p id="milaIncomeAmount">0 kr</p>
+                </div>
+              </div>
+
+              <strong id="incomeMilaPercent"> 0% </strong>
+
+              <div class="progress">
+                <div id="incomeMilaBar" class="progress-fill"></div>
+              </div>
+            </div>
+
+            <div class="person-card">
+              <div class="person-header">
+                <div class="avatar mathias">M</div>
+
+                <div>
+                  <h3>Mathias</h3>
+                  <p id="mathiasIncomeAmount">0 kr</p>
+                </div>
+              </div>
+
+              <strong id="incomeMathiasPercent"> 0% </strong>
+
+              <div class="progress">
+                <div id="incomeMathiasBar" class="progress-fill"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-box">
+            <div class="section-title">
+              <h2>Income Sources</h2>
+
+              <button class="primary-button" onclick="openModal('income')">
+                + Add Income
+              </button>
+            </div>
+
+            <div id="incomeList" class="transaction-list"></div>
+          </div>
+        </section>
+
+        <!-- ================= EXPENSES ================= -->
+
+        <section id="expenses" class="page">
+          <div class="page-header">
+            <div>
+              <button class="back-button" onclick="showPage('dashboard')">
+                ← Dashboard
+              </button>
+
+              <p class="small-text">Money going out</p>
+
+              <h1>💸 Expenses</h1>
+            </div>
+
+            <div class="month-selector">
+              <label>Month</label>
+
+              <select
+                id="expenseMonth"
+                onchange="changeMonth(this.value)"
+              ></select>
+            </div>
+          </div>
+
+          <div class="summary-card">
+            <p>Total Expenses</p>
+
+            <h2 id="expenseTotal">0 kr</h2>
+          </div>
+
+          <div class="people-grid">
+            <div class="person-card">
+              <div class="person-header">
+                <div class="avatar mila">M</div>
+
+                <div>
+                  <h3>Mila</h3>
+                  <p id="milaExpenseAmount">0 kr</p>
+                </div>
+              </div>
+
+              <strong id="expenseMilaPercent"> 0% </strong>
+
+              <div class="progress">
+                <div id="expenseMilaBar" class="progress-fill"></div>
+              </div>
+            </div>
+
+            <div class="person-card">
+              <div class="person-header">
+                <div class="avatar mathias">M</div>
+
+                <div>
+                  <h3>Mathias</h3>
+                  <p id="mathiasExpenseAmount">0 kr</p>
+                </div>
+              </div>
+
+              <strong id="expenseMathiasPercent"> 0% </strong>
+
+              <div class="progress">
+                <div id="expenseMathiasBar" class="progress-fill"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-box">
+            <div class="section-title">
+              <h2>Recent Expenses</h2>
+
+              <button class="primary-button" onclick="openModal('expense')">
+                + Add Expense
+              </button>
+            </div>
+
+            <div id="expenseList" class="transaction-list"></div>
+          </div>
+        </section>
+
+        <!-- ================= SAVINGS ================= -->
+
+        <section id="savings" class="page">
+          <div class="page-header">
+            <div>
+              <button class="back-button" onclick="showPage('dashboard')">
+                ← Dashboard
+              </button>
+
+              <p class="small-text">Money you're putting aside</p>
+
+              <h1>💎 Savings</h1>
+            </div>
+
+            <div class="month-selector">
+              <label>Month</label>
+
+              <select
+                id="savingsMonth"
+                onchange="changeMonth(this.value)"
+              ></select>
+            </div>
+          </div>
+
+          <div class="summary-card">
+            <p>Total Savings</p>
+
+            <h2 id="savingsTotal">0 kr</h2>
+          </div>
+
+          <div class="people-grid">
+            <div class="person-card">
+              <div class="person-header">
+                <div class="avatar mila">M</div>
+
+                <div>
+                  <h3>Mila</h3>
+                  <p id="milaSavingsAmount">0 kr</p>
+                </div>
+              </div>
+
+              <strong id="savingsMilaPercent"> 0% </strong>
+
+              <div class="progress">
+                <div id="savingsMilaBar" class="progress-fill"></div>
+              </div>
+            </div>
+
+            <div class="person-card">
+              <div class="person-header">
+                <div class="avatar mathias">M</div>
+
+                <div>
+                  <h3>Mathias</h3>
+                  <p id="mathiasSavingsAmount">0 kr</p>
+                </div>
+              </div>
+
+              <strong id="savingsMathiasPercent"> 0% </strong>
+
+              <div class="progress">
+                <div id="savingsMathiasBar" class="progress-fill"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-box">
+            <div class="section-title">
+              <h2>Savings</h2>
+
+              <button class="primary-button" onclick="openModal('saving')">
+                + Add Savings
+              </button>
+            </div>
+
+            <div id="savingsList" class="transaction-list"></div>
+          </div>
+        </section>
+
+        <!-- ================= GOALS ================= -->
+
+        <section id="goals" class="page">
+          <div class="page-header">
+            <div>
+              <button class="back-button" onclick="showPage('dashboard')">
+                ← Dashboard
+              </button>
+
+              <p class="small-text">Plan your future together</p>
+
+              <h1>🎯 Goals</h1>
+            </div>
+
+            <button class="primary-button" onclick="openModal('goal')">
+              + Add Goal
+            </button>
+          </div>
+
+          <div id="goalsList" class="goals-grid large"></div>
+        </section>
+
+        <!-- ================= YEAR OVERVIEW ================= -->
+
+        <section id="year" class="page">
+          <div class="page-header">
+            <div>
+              <button class="back-button" onclick="showPage('dashboard')">
+                ← Dashboard
+              </button>
+
+              <p class="small-text">Your complete financial year</p>
+
+              <h1>📊 Year Overview</h1>
+            </div>
+
+            <div class="year-selector">
+              <label>Year</label>
+
+              <select id="yearSelect" onchange="changeYear(this.value)">
+                <option value="2026">2026</option>
+
+                <option value="2027">2027</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="year-summary">
+            <div>
+              <p>Yearly Income</p>
+              <h2 id="yearIncome">0 kr</h2>
+            </div>
+
+            <div>
+              <p>Yearly Expenses</p>
+              <h2 id="yearExpenses">0 kr</h2>
+            </div>
+
+            <div>
+              <p>Yearly Savings</p>
+              <h2 id="yearSavings">0 kr</h2>
+            </div>
+          </div>
+
+          <div class="section-box">
+            <h2>2026 Financial Overview</h2>
+
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Month</th>
+                    <th>Income</th>
+                    <th>Expenses</th>
+                    <th>Savings</th>
+                  </tr>
+                </thead>
+
+                <tbody id="yearTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- ================= MODAL ================= -->
+
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <button class="close-button" onclick="closeModal()">×</button>
+
+        <h2 id="modalTitle">Add</h2>
+
+        <form id="modalForm">
+          <div id="formFields"></div>
+
+          <button type="submit" class="primary-button full">Save</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
